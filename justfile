@@ -35,3 +35,16 @@ db-reset:
 # Show the status of the database container.
 db-status:
     {{compose}} ps
+
+
+api_dir := "apps/api"
+
+# --- API ---
+
+# Run the FastAPI dev server with auto-reload
+api:
+    cd {{api_dir}} && uv run uvicorn main:app --reload --port 8000
+
+# Install / Sync API dependencies.
+api-install:
+    cd{{api_dir}} && uv sync

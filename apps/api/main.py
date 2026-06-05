@@ -1,6 +1,7 @@
-def main():
-    print("Hello from api!")
+from fastapi import FastAPI
 
+app = FastAPI(title="CyberDex API")
 
-if __name__ == "__main__":
-    main()
+@app.get("/api/health")
+def health() -> dict[str, str]:
+    return {"status": "ok", "service": "cyberdex-api"}
