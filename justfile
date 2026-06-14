@@ -43,8 +43,27 @@ api_dir := "apps/api"
 
 # Run the FastAPI dev server with auto-reload
 api:
-    cd {{api_dir}} && uv run uvicorn main:app --reload --port 8000
+    cd {{api_dir}} && uv run uvicorn app.main:app --reload --port 8000
 
 # Install / Sync API dependencies.
 api-install:
     cd{{api_dir}} && uv sync
+
+
+
+# --- Migrations ---
+# Generate a new migration from model changes.
+api-migration message:
+    cd {{api_dir}} && uv run alembic revision --autogenerate -m "{{message}}"
+
+# Apply all pending migrations.
+api-migrate:
+    cd {{api_dir}} && uv run alembic upgrade head
+
+# Roll back the last migration.
+api-rollback:
+    cd {{api_dir}} && uv run alembic downgrade -1
+
+# Show the current migration version.
+api-migration-status:
+    cd {{api_dir}} && uv run alembic current
