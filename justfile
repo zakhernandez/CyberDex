@@ -8,6 +8,9 @@ compose := "docker compose -f infra/docker-compose.yml"
 default:
     @just --list
 
+
+
+
 # --- Database ---
 
 # Start the Postgres container in the background.
@@ -37,6 +40,11 @@ db-status:
     {{compose}} ps
 
 
+
+
+
+
+
 api_dir := "apps/api"
 
 # --- API ---
@@ -48,6 +56,11 @@ api:
 # Install / Sync API dependencies.
 api-install:
     cd{{api_dir}} && uv sync
+
+
+
+
+
 
 
 
@@ -67,3 +80,23 @@ api-rollback:
 # Show the current migration version.
 api-migration-status:
     cd {{api_dir}} && uv run alembic current
+
+
+
+
+
+
+
+
+
+# --- Web ---
+
+web_dir := "apps/web"
+
+# Run the Next.js dev server.
+web:
+    cd {{web_dir}} && pnpm dev
+
+# Install / sync web dependencies.
+web-install:
+    cd {{web_dir}} && pnpm install

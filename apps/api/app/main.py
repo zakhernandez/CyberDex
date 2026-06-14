@@ -1,3 +1,34 @@
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(title="Cyberdex API")
+
+# Allow frontend to call API
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+@app.get("/api/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
+
+
+
+
+
+
+
+
+# Old Ping Code
+'''
 from fastapi import FastAPI, Depends
 from typing import Annotated
 from sqlalchemy import select
@@ -30,3 +61,5 @@ def create_ping(payload: PingCreate, db: DbSession) -> Ping:
 def list_pings(db: DbSession) -> list[Ping]:
     stmt = select(Ping).order_by(Ping.created_at.desc()).limit(50)
     return list(db.scalars(stmt))
+
+'''
