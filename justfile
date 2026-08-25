@@ -113,3 +113,7 @@ web-install:
 # Ingest cyberpunk-adjacent films from TMDB.
 ingest-films:
     cd {{api_dir}} && uv run python -m app.ingest.run_tmdb
+
+# Ingest cyberpunk books from OpenLibrary.
+ingest-books:
+    cd {{api_dir}} && uv run python -m app.ingest.run_openlibrary
