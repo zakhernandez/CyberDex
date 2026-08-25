@@ -100,3 +100,16 @@ web:
 # Install / sync web dependencies.
 web-install:
     cd {{web_dir}} && pnpm install
+
+
+
+
+
+
+
+
+# --- Ingestion ---
+
+# Ingest cyberpunk-adjacent films from TMDB.
+ingest-films:
+    cd {{api_dir}} && uv run python -m app.ingest.run_tmdb
