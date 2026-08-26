@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     openlibrary_base_url: str = "https://openlibrary.org"
     openlibrary_covers_base: str = "https://covers.openlibrary.org/b"
 
+    # AniList
+    anilist_graphql_url: str = "https://graphql.anilist.co"
+
 
     model_config = SettingsConfigDict(
         env_file = ".env",

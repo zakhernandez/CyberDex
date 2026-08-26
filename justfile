@@ -117,3 +117,7 @@ ingest-films:
 # Ingest cyberpunk books from OpenLibrary.
 ingest-books:
     cd {{api_dir}} && uv run python -m app.ingest.run_openlibrary
+
+# Ingest cyberpunk anime from AniList.
+ingest-anime:
+    cd {{api_dir}} && uv run python -m app.ingest.run_anilist
