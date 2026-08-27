@@ -18,7 +18,6 @@ app.add_middleware(
 def health() -> dict[str, str]:
     return {"status": "ok"}
 
-
 app.include_router(works.router)
 app.include_router(ratings.router)
 app.include_router(stats.router)

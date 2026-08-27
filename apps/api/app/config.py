@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     # AniList
     anilist_graphql_url: str = "https://graphql.anilist.co"
 
+    # Authentication
+    auth_secret: str = ""
+
 
     model_config = SettingsConfigDict(
         env_file = ".env",
