@@ -1,21 +1,24 @@
-
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Cyberdex API")
+from app.routers import ratings, stats, works
 
-# Allow frontend to call API
+app = FastAPI(title="CyberDex API")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
-DbSession = Annotated[Session, Depends(get_db)]
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+app.include_router(works.router)
+app.include_router(ratings.router)
+app.include_router(stats.router)
