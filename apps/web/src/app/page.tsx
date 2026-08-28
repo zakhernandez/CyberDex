@@ -1,51 +1,38 @@
-import { auth, signIn, signOut } from "@/auth";
+import Link from "next/link";
 
-export default async function Home() {
-  const session = await auth();
+import { Button } from "@/components/Button";
+import { Container } from "@/components/Container";
+import { KindBadge } from "@/components/KindBadge";
 
+export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-black text-cyan-400 font-mono p-8">
-      <div className="max-w-md w-full space-y-6">
-        <h1 className="text-5xl font-bold text-center">CyberDex</h1>
+    <Container>
+      <section className="py-24 max-w-3xl">
+        <p className="font-mono text-xs uppercase tracking-widest text-foreground-muted mb-6">
+          &gt; system online
+        </p>
+        <h1 className="font-display text-6xl font-bold leading-none mb-6">
+          A catalog for{" "}
+          <span className="text-primary">cyberpunk</span> media.
+        </h1>
+        <p className="text-foreground-muted text-lg mb-8 max-w-xl">
+          Films, books, and anime — rated, cross-referenced, and
+          recommended. A private database for the low-life
+          high-tech connoisseur.
+        </p>
 
-        {session?.user ? (
-          <div className="space-y-4 text-center">
-            <p>Signed in as {session.user.email}</p>
-            <p className="text-xs opacity-60">
-              Google ID: {session.user.googleId}
-            </p>
-            <form
-              action={async () => {
-                "use server";
-                await signOut();
-              }}
-            >
-              <button
-                type="submit"
-                className="px-4 py-2 border border-cyan-400 hover:bg-cyan-400 hover:text-black transition-colors"
-              >
-                sign out
-              </button>
-            </form>
-          </div>
-        ) : (
-          <div className="text-center">
-            <form
-              action={async () => {
-                "use server";
-                await signIn("google", { redirectTo: "/" });
-              }}
-            >
-              <button
-                type="submit"
-                className="px-6 py-3 border border-cyan-400 hover:bg-cyan-400 hover:text-black transition-colors"
-              >
-                &gt; sign in with google
-              </button>
-            </form>
-          </div>
-        )}
-      </div>
-    </main>
+        <div className="flex items-center gap-4 mb-16">
+          <Link href="/browse">
+            <Button variant="primary">enter catalog</Button>
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <KindBadge kind="FILM" />
+          <KindBadge kind="BOOK" />
+          <KindBadge kind="ANIME" />
+        </div>
+      </section>
+    </Container>
   );
 }
