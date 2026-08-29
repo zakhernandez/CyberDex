@@ -67,6 +67,29 @@ def list_works(
     )
 
 
+
+
+
+
+@router.get("/recent", response_model=list[WorkListItem])
+def recent_works(
+    db: DbSession,
+    limit: int = Query(12, ge=1, le=50),
+    kind: WorkKind | None = Query(None),
+) -> list[WorkListItem]:
+    """Get the most recently added works, optionally filtered by kind."""
+    stmt = select(Work).where(Work.cover_url.is_not(None))
+    if kind is not None:
+        stmt = stmt.where(Work.kind == kind)
+    stmt = stmt.order_by(Work.created_at.desc()).limit(limit)
+
+    items = list(db.scalars(stmt))
+    return [WorkListItem.model_validate(item) for item in items]
+
+
+
+
+
 @router.get("/{slug}", response_model=WorkDetail)
 def get_work(slug: str, db: DbSession) -> WorkDetail:
     """Get one work by slug with all details."""
@@ -91,6 +114,8 @@ def get_work(slug: str, db: DbSession) -> WorkDetail:
         _ = wc.creator  # touch to trigger lazy load; selectinload above didn't cover this
 
     return WorkDetail.model_validate(work)
+
+
 
 
 

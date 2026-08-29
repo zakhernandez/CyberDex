@@ -27,62 +27,62 @@ from app.database import Base
 
 
 class WorkKind(str, Enum):
-    FILM = "film"
-    BOOK = "book"
-    ANIME = "anime"
+    FILM = "FILM"
+    BOOK = "BOOK"
+    ANIME = "ANIME"
 
 
 class CreatorKind(str, Enum):
-    PERSON = "person"
-    STUDIO = "studio"
+    PERSON = "PERSON"
+    STUDIO = "STUDIO"
 
 
 class CreatorRole(str, Enum):
-    DIRECTOR = "director"
-    SCREENWRITER = "screenwriter"
-    AUTHOR = "author"
-    STUDIO = "studio"
-    MANGAKA = "mangaka"
-    NOVELIST = "novelist"
-    COMPOSER = "composer"
+    DIRECTOR = "DIRECTOR"
+    SCREENWRITER = "SCREENWRITER"
+    AUTHOR = "AUTHOR"
+    STUDIO = "STUDIO"
+    MANGAKA = "MANGAKA"
+    NOVELIST = "NOVELIST"
+    COMPOSER = "COMPOSER"
 
 
 class ExternalSource(str, Enum):
-    TMDB = "tmdb"
-    OPENLIBRARY = "openlibrary"
-    ANILIST = "anilist"
-    IMDB = "imdb"
-    MAL = "mal"
-    GOOGLE_BOOKS = "google_books"
+    TMDB = "TMDB"
+    OPENLIBRARY = "OPENLIBRARY"
+    ANILIST = "ANILIST"
+    IMDB = "IMDB"
+    MAL = "MAL"
+    GOOGLE_BOOKS = "GOOGLE_BOOKS"
 
 
 class AnimeFormat(str, Enum):
-    TV = "tv"
-    OVA = "ova"
-    ONA = "ona"
-    FILM = "film"
-    SPECIAL = "special"
-    MUSIC = "music"
-    TV_SHORT = "tv_short"
+    TV = "TV"
+    OVA = "OVA"
+    ONA = "ONA"
+    FILM = "FILM"
+    SPECIAL = "SPECIAL"
+    MUSIC = "MUSIC"
+    TV_SHORT = "TV_SHORT"
 
 
 class AnimeSource(str, Enum):
-    MANGA = "manga"
-    LIGHT_NOVEL = "light_novel"
-    ORIGINAL = "original"
-    VIDEO_GAME = "video_game"
-    NOVEL = "novel"
-    OTHER = "other"
+    MANGA = "MANGA"
+    LIGHT_NOVEL = "LIGHT_NOVEL"
+    ORIGINAL = "ORIGINAL"
+    VIDEO_GAME = "VIDEO_GAME"
+    NOVEL = "NOVEL"
+    OTHER = "OTHER"
 
 
 class RelationshipType(str, Enum):
-    BASED_ON = "based_on"
-    ADAPTED_FROM = "adapted_from"
-    SEQUEL_OF = "sequel_of"
-    PREQUEL_OF = "prequel_of"
-    RELATED = "related"
-    REMAKE_OF = "remake_of"
-    SPINOFF_OF = "spinoff_of"
+    BASED_ON = "BASED_ON"
+    ADAPTED_FROM = "ADAPTED_FROM"
+    SEQUEL_OF = "SEQUEL_OF"
+    PREQUEL_OF = "PREQUEL_OF"
+    RELATED = "RELATED"
+    REMAKE_OF = "REMAKE_OF"
+    SPINOFF_OF = "SPINOFF_OF"
 
 
 # ──────────────────────────────────────────────────────────────────
